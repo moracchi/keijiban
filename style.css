@@ -14,6 +14,28 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* チョークカーソル */
+    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2L2 12l18 18 10-10L12 2zm-1 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z' fill='%23ffffff' fill-opacity='0.9'/%3E%3C/svg%3E") 2 30, auto;
+}
+
+/* 黒板領域内のチョークカーソル */
+.blackboard {
+    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2L2 12l18 18 10-10L12 2zm-1 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z' fill='%23ffffff' fill-opacity='0.9'/%3E%3C/svg%3E") 2 30, auto;
+}
+
+/* リンクのチョークカーソル */
+a {
+    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2L2 12l18 18 10-10L12 2zm-1 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z' fill='%23ffffff' fill-opacity='0.9'/%3E%3C/svg%3E") 2 30, pointer;
+}
+
+/* ボタンのチョークカーソル */
+button, input, textarea {
+    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2L2 12l18 18 10-10L12 2zm-1 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z' fill='%23ffffff' fill-opacity='0.9'/%3E%3C/svg%3E") 2 30, pointer;
+}
+
+/* 黒板消しボタンのカーソル */
+.eraser-button, .eraser-button-large {
+    cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='4' y='12' width='24' height='10' rx='2' ry='2' fill='%239e8271' /%3E%3C/svg%3E") 16 5, pointer;
 }
 
 /* 黒板スタイル */
@@ -97,7 +119,7 @@ body {
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     padding: 20px;
-    margin-bottom: 30px;
+    margin-top: 30px; /* 上部の余白を追加（位置入れ替えに伴う変更） */
     position: relative;
     z-index: 2;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -185,6 +207,7 @@ textarea {
     position: relative;
     z-index: 2;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0; /* 下部の余白を削除（位置入れ替えに伴う変更） */
 }
 
 /* メッセージヘッダー */
@@ -258,6 +281,27 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-height: 400px; /* メッセージが多いときにスクロールするように */
+    overflow-y: auto;
+}
+
+/* スクロールバーのカスタマイズ */
+#message-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#message-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+#message-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+#message-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* 個別メッセージ */
@@ -410,51 +454,3 @@ textarea {
     }
     
     .board-title {
-        font-size: 2.2rem;
-    }
-    
-    .message-nickname {
-        font-size: 1.3rem;
-    }
-    
-    .eraser-button {
-        width: 30px;
-        height: 16px;
-    }
-    
-    .eraser-button-large {
-        width: 70px;
-        height: 25px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .blackboard {
-        border-width: 8px;
-    }
-    
-    .board-frame {
-        padding: 10px;
-        border-width: 3px;
-    }
-    
-    .board-title {
-        font-size: 1.8rem;
-    }
-    
-    .message-form-container,
-    .messages-container {
-        padding: 15px;
-    }
-    
-    .eraser-button {
-        width: 24px;
-        height: 14px;
-    }
-    
-    .eraser-button-large {
-        width: 60px;
-        font-size: 0.7rem;
-    }
-}

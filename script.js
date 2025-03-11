@@ -253,4 +253,38 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // レトロエフェクトの適用
     addRetroEffects();
+    
+    // チョークカーソルの追跡エフェクト（オプション）
+    function addChalkTrail() {
+        document.addEventListener('mousemove', function(e) {
+            // マウスの動きが速い場合にのみチョーク痕を残す
+            if (Math.random() > 0.97) {
+                const trail = document.createElement('div');
+                trail.className = 'chalk-trail';
+                trail.style.position = 'fixed';
+                trail.style.width = '3px';
+                trail.style.height = '3px';
+                trail.style.borderRadius = '50%';
+                trail.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                trail.style.pointerEvents = 'none';
+                trail.style.opacity = 0.7;
+                trail.style.transition = 'opacity 1s';
+                
+                document.body.appendChild(trail);
+                
+                // フェードアウトして消える
+                setTimeout(() => {
+                    trail.style.opacity = 0;
+                    setTimeout(() => {
+                        trail.remove();
+                    }, 1000);
+                }, 100);
+            }
+        });
+    }
+    
+    // チョーク痕追跡を有効化（オプション機能）
+    // addChalkTrail();
 });

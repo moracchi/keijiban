@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>駅の伝言板</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 手書き風フォントを読み込み -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Klee+One&family=Permanent+Marker&family=Homemade+Apple&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="blackboard">
+        <div class="board-frame">
+            <h1 class="board-title">駅の伝言板</h1>
+            
+            <!-- 入力フォーム -->
+            <div class="message-form-container">
+                <form id="message-form">
+                    <div class="form-group">
+                        <label for="nickname">ニックネーム:</label>
+                        <input type="text" id="nickname" required maxlength="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">メッセージ:</label>
+                        <textarea id="comment" required maxlength="200"></textarea>
+                    </div>
+                    <button type="submit" class="chalk-button">書き込む</button>
+                </form>
+            </div>
+            
+            <!-- メッセージ一覧 -->
+            <div class="messages-container">
+                <div class="messages-header">
+                    <h2>メッセージ一覧</h2>
+                    <button id="clear-all-button" class="eraser-button-large" title="すべてのメッセージを消す">全部消す</button>
+                </div>
+                <div id="message-list">
+                    <!-- JavaScriptでメッセージが挿入される場所 -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

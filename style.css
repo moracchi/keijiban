@@ -1,0 +1,460 @@
+/* 基本スタイルリセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Klee One', cursive;
+    background-color: #f5e9d9;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23d7c3a7' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 黒板スタイル */
+.blackboard {
+    background-color: #234536; /* より深い黒板の緑色 */
+    border: 15px solid #5c4a38; /* より古い木の枠風 */
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    width: 90%;
+    max-width: 800px;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.9); /* チョークの白色 */
+    position: relative;
+    overflow: hidden;
+}
+
+/* 木製フレーム効果 */
+.board-frame {
+    border: 6px solid #453424;
+    margin: 4px;
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* 黒板の粉っぽさを表現 */
+.blackboard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z'/%3E%3C/g%3E%3C/svg%3E"), radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.1) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* レトロなチョーク痕を追加 */
+.blackboard::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* タイトルスタイル */
+.board-title {
+    font-family: 'Homemade Apple', cursive;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 2px;
+}
+
+/* チョークの下線 */
+.board-title::after {
+    content: "";
+    display: block;
+    width: 90%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 10px auto 0;
+    border-radius: 1px;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+/* フォームコンテナ */
+.message-form-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* 入力フィールド */
+input, textarea {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: white;
+    font-family: 'Klee One', cursive;
+    font-size: 1.1rem;
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+/* チョークボタン */
+.chalk-button {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.chalk-button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.chalk-button:active {
+    transform: translateY(2px);
+}
+
+/* チョーク粉エフェクト */
+.chalk-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.4s, opacity 0.3s;
+}
+
+.chalk-button:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* メッセージ一覧 */
+.messages-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* メッセージヘッダー */
+.messages-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.messages-header h2 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* 全消去ボタン（大きな黒板消し） */
+.eraser-button-large {
+    width: 80px;
+    height: 30px;
+    background-color: #9e8271;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    color: #333;
+    font-family: 'Klee One', cursive;
+    font-size: 0.9rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eraser-button-large::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #746253;
+    border-radius: 5px 5px 0 0;
+}
+
+.eraser-button-large::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 6px;
+    right: 6px;
+    height: 3px;
+    background-color: #d0c0b0;
+    border-radius: 1px;
+    opacity: 0.7;
+}
+
+.eraser-button-large:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.eraser-button-large:active {
+    transform: scale(0.95);
+}
+
+/* メッセージリスト */
+#message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 個別メッセージ */
+.message {
+    position: relative;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    padding-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.message:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 5px;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+}
+
+.message-nickname {
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.message-date {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.message-content {
+    font-family: 'Klee One', cursive;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    word-break: break-word;
+    padding-right: 40px; /* 黒板消しボタンのスペース */
+}
+
+/* 黒板消しボタン */
+.eraser-button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 20px;
+    background-color: #9e8271;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0.7;
+}
+
+.eraser-button::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #746253;
+    border-radius: 3px 3px 0 0;
+}
+
+.eraser-button::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 4px;
+    right: 4px;
+    height: 2px;
+    background-color: #d0c0b0;
+    border-radius: 1px;
+    opacity: 0.7;
+}
+
+.eraser-button:hover {
+    transform: translateY(-50%) scale(1.1);
+    opacity: 1;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.eraser-button:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* チョーク粉のアニメーション */
+@keyframes chalk-dust {
+    0% {
+        opacity: 0.7;
+        transform: scale(0.1);
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5) translateY(10px);
+    }
+}
+
+.chalk-dust {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100;
+    animation: chalk-dust 1s forwards;
+}
+
+/* 空のメッセージ表示 */
+.empty-message {
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* レトロな装飾要素 - チョーク跡 */
+.chalk-marks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.1;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .blackboard {
+        padding: 0;
+        border-width: 10px;
+    }
+    
+    .board-frame {
+        padding: 15px;
+        border-width: 4px;
+    }
+    
+    .board-title {
+        font-size: 2.2rem;
+    }
+    
+    .message-nickname {
+        font-size: 1.3rem;
+    }
+    
+    .eraser-button {
+        width: 30px;
+        height: 16px;
+    }
+    
+    .eraser-button-large {
+        width: 70px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .blackboard {
+        border-width: 8px;
+    }
+    
+    .board-frame {
+        padding: 10px;
+        border-width: 3px;
+    }
+    
+    .board-title {
+        font-size: 1.8rem;
+    }
+    
+    .message-form-container,
+    .messages-container {
+        padding: 15px;
+    }
+    
+    .eraser-button {
+        width: 24px;
+        height: 14px;
+    }
+    
+    .eraser-button-large {
+        width: 60px;
+        font-size: 0.7rem;
+    }
+}
